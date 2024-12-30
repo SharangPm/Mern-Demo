@@ -37,8 +37,8 @@ export const getHomeProjectAPI = async()=>{
 // getAllProjectAPI
 
 
-export const getAllProjectAPI = async(reqHeader)=>{
-    return await commonAPI('GET',`${server_url}/all-project`,"",reqHeader)
+export const getAllProjectAPI = async(reqHeader,searchKey)=>{
+    return await commonAPI('GET',`${server_url}/all-project?search=${searchKey}`,"",reqHeader)
 }
 
 // getUserProjectAPI
@@ -47,3 +47,19 @@ export const getAllProjectAPI = async(reqHeader)=>{
 export const getUserProjectAPI = async(reqHeader)=>{
     return await commonAPI('GET',`${server_url}/user-project`,"",reqHeader)
 }
+
+// updateProjectAPI
+
+export const updateProjectAPI= async(id,reqBody,reqHeader)=>{
+
+    return await commonAPI('PUT',`${server_url}/projects/${id}/update`,reqBody,reqHeader)
+
+}
+// deleteProjectAPI
+
+export const deleteProjectAPI= async(id,reqHeader)=>{
+
+    return await commonAPI('DELETE',`${server_url}/projects/${id}/delete`,{},reqHeader)
+
+}
+

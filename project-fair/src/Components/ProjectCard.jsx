@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Card, Col, Modal, Row } from 'react-bootstrap'
 import prjctCard from '../assets/images/project-image.jpg'
+import { server_url } from '../services/serverurl';
 
-function ProjectCard() {
+
+function ProjectCard({project}) {
 
   const [show, setShow] = useState(false);
 
@@ -12,9 +14,9 @@ function ProjectCard() {
   return (
     <>
        <Card style={{ width: '18rem' }} className='shadow rounded mt-5'>
-      <Card.Img variant="top" src={prjctCard} width={'100%'} onClick={handleShow}/>
+      <Card.Img variant="top" src={`${server_url}/uploads/${project?.projectImage}`} width={'100%'} onClick={handleShow}/>
       <Card.Body>
-        <Card.Title>Card Title</Card.Title>
+        <Card.Title>{project?.title}</Card.Title>
       </Card.Body>
     </Card>
 
@@ -35,21 +37,20 @@ function ProjectCard() {
     <img src={prjctCard} width={"100%"} alt="" />
   </Col>
   <Col>
-    <h2 className="fw-bolder text-dark">Project Title</h2>
+    <h2 className="fw-bolder text-dark">{project?.title}</h2>
     <h5 className="fw-bolder">
-      <span className="text-warning">Languages Used</span>: React
+      <span className="text-warning">Languages Used</span>:{project?.languages}
     </h5>
     <p className="fw-bolder">
-      <span className="text-success">Overview</span>: Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, adipisci alias eveniet ex quam assumenda quisquam libero eius officia obcaecati maiores repudiandae unde itaque vero quas atque? Dicta, magnam at.
-    </p>
+      <span className="text-success">Overview</span>: {project?.overview}</p>
   </Col>
 </Row>
 
 <div className="mt-2">
-  <a href="#" target="_blank" className="me-3 btn text-dark">
+  <a href={project?.github} target="_blank" className="me-3 btn text-dark">
     <i className="fa-brands fa-github fa-2x"></i>
   </a>
-  <a href="#" target="_blank" className="me-3 btn text-dark">
+  <a href={project?.website} target="_blank" className="me-3 btn text-dark">
     <i className="fa-solid fa-link fa-2x"></i>
   </a>
 </div>
