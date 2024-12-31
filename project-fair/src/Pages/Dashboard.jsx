@@ -17,7 +17,7 @@ const[username,setUsername]=useState("")
 
   return (
     <>
-    <Header/>
+    <Header insideDashboard/>
     <div className="container-fluid" style={{width:"100%",height:"90vh"}}>
       <Row>
         {/* my rojects */}

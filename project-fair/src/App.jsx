@@ -1,20 +1,23 @@
 
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, UNSAFE_decodeViaTurboStream } from 'react-router-dom'
 import './App.css'
 import Home from './Pages/Home'
 import Projects from './Pages/Projects'
 import Dashboard from './Pages/Dashboard'
 import Auth from './Pages/Auth'
+import { useContext } from 'react'
+import { TokenAuthContext } from './contextAPI/TokenAuth'
 
 function App() {
-
+    const{isAuthorized,setIsAuthorized}=useContext(TokenAuthContext)
+  
 
   return (
     <>
     <Routes>
       <Route path='/' element={<Home/>}/>
-      <Route path='/projects' element={<Projects/>}/>
-      <Route path='/dashboard' element={<Dashboard/>}/>
+      <Route path='/projects' element={isAuthorized?<Projects/>:<Home/>}/>
+      <Route path='/dashboard' element={isAuthorized?<Dashboard/>:<Home/>}/>
       <Route path='/login' element={<Auth/>}/>
       <Route path='/register' element={<Auth register/>}/>
       <Route path='/*' element={<Navigate to={'/'}/>}/>
